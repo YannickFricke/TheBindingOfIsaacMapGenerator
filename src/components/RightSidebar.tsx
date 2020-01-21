@@ -37,14 +37,14 @@ const Notice = styled.div`
 
 interface IRightSidebarProps {
     rows: number;
-    setRows: React.Dispatch<React.SetStateAction<number>>
+    setRows: React.Dispatch<React.SetStateAction<number>>;
 
     columns: number;
-    setColumns: React.Dispatch<React.SetStateAction<number>>
+    setColumns: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const RightSidebar: React.FC<IRightSidebarProps> = (props) => {
-    const handleRowChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleRowChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const newValue = parseInt(event.target.value, 10);
 
         if (isNaN(newValue)) {
@@ -54,7 +54,7 @@ export const RightSidebar: React.FC<IRightSidebarProps> = (props) => {
         props.setRows(newValue);
     };
 
-    const handleColumnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleColumnChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const newValue = parseInt(event.target.value, 10);
 
         if (isNaN(newValue)) {
@@ -69,11 +69,11 @@ export const RightSidebar: React.FC<IRightSidebarProps> = (props) => {
 
         <div>
             <InputDescription>Rows:</InputDescription>
-            <StyledInput type="text" defaultValue={props.rows} onChange={handleRowChange} />
+            <StyledInput type="text" defaultValue={props.rows} onChange={handleRowChange}/>
         </div>
         <div>
             <InputDescription>Columns:</InputDescription>
-            <StyledInput type="text" defaultValue={props.columns} onChange={handleColumnChange} />
+            <StyledInput type="text" defaultValue={props.columns} onChange={handleColumnChange}/>
         </div>
 
         <Notice>

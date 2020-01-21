@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import { Sidebar } from './Sidebar';
 import { SidebarHeading } from './SidebarHeading';
-import { ISelectionType } from "../App";
-import { ShapesSelector } from "./ShapesSelector";
-import { TypesSelector } from "./TypesSelector";
+import { ISelectionType } from '../App';
+import { ShapesSelector } from './ShapesSelector';
+import { TypesSelector } from './TypesSelector';
 
 const StyledLeftSidebar = styled(Sidebar)`
     grid-area: left;
@@ -15,7 +15,7 @@ const RoomShapesContainer = styled.div`
 `;
 
 interface ILeftSidebarProps {
-    setSelection: React.Dispatch<React.SetStateAction<ISelectionType>>
+    setSelection: React.Dispatch<React.SetStateAction<ISelectionType>>;
 }
 
 export const LeftSidebar: React.FC<ILeftSidebarProps> = (props) => {

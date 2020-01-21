@@ -1,16 +1,17 @@
-import React from "react";
-import { ISelectionType } from "../App";
-import { ImageContainer } from "./ImageContainer";
-import { extractId } from "../Helper";
-import { Images } from "../Images";
+import React from 'react';
+import { ISelectionType } from '../App';
+import { ImageContainer } from './ImageContainer';
+import { extractId } from '../Helper';
+import { Images } from '../Images';
 
 interface ITypesSelectorProps {
     setSelection: React.Dispatch<React.SetStateAction<ISelectionType>>;
 }
 
 export const TypesSelector: React.FC<ITypesSelectorProps> = (props) => {
-    const handleClick = (event: any) => {
-        const id = extractId(event.target.src);
+    const handleClick = (event: React.MouseEvent<HTMLImageElement>): void => {
+        const target = event.target as HTMLImageElement;
+        const id = extractId(target.src);
 
         props.setSelection({
             type: 'type',

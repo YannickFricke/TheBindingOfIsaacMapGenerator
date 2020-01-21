@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import shape_1x1 from './images/previews/1.png';
 import shape_ih from './images/previews/2.png';
 import shape_iv from './images/previews/3.png';

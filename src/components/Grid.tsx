@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ISelectionType } from "../App";
-import { IColumnContent } from "../IColumnContent";
-import { canSetShape, canSetType, updateGrid } from "../Helper";
-import { Images } from "../Images";
+import { ISelectionType } from '../App';
+import { IColumnContent } from '../IColumnContent';
+import { canSetShape, canSetType, updateGrid } from '../Helper';
+import { Images } from '../Images';
 
 const StyledGrid = styled.div`
     border: 1px solid #b0b0b0;
@@ -41,12 +41,12 @@ const RoomTypeImage = styled.img`
 
 interface IGridProps {
     grid: IColumnContent[][];
-    setGrid: React.Dispatch<React.SetStateAction<any[]>>
+    setGrid: React.Dispatch<React.SetStateAction<IColumnContent[][]>>;
     selection: ISelectionType;
 }
 
 export const Grid: React.FC<IGridProps> = (props) => {
-    const handleColumnClick = (event: any) => {
+    const handleColumnClick = (event: React.MouseEvent<HTMLDivElement>): void => {
         if (props.selection.type === '') {
             return;
         }
@@ -55,11 +55,16 @@ export const Grid: React.FC<IGridProps> = (props) => {
             ...props.grid,
         ];
         const selectedId = props.selection.id;
-        const rowIndex = parseInt(event.target.dataset['row'], 10);
-        const columnIndex = parseInt(event.target.dataset['column'], 10);
+        const target = event.target as HTMLDivElement;
+        const rowIndex = parseInt(target.dataset['row'] || '', 10);
+        const columnIndex = parseInt(target.dataset['column'] || '', 10);
+
+        if (isNaN(rowIndex) || isNaN(columnIndex)) {
+            return;
+        }
 
         switch (props.selection.type) {
-            case "shape":
+            case 'shape':
                 if (!canSetShape(
                     selectedId,
                     rowIndex,
@@ -78,7 +83,7 @@ export const Grid: React.FC<IGridProps> = (props) => {
 
                 break;
 
-            case "type":
+            case 'type':
                 if (!canSetType(
                     rowIndex,
                     columnIndex,
@@ -104,9 +109,11 @@ export const Grid: React.FC<IGridProps> = (props) => {
                                        data-column={columnIndex}
                                        style={{
                                            backgroundImage: column.shape !== '' ?
+                                               // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                                `url("${(Images.shapeSprites as any)[column.shape]}")` : '',
                                        }}
                     >
+                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                         {column.type !== '' && <RoomTypeImage src={(Images.types as any)[column.type]}/>}
                     </GridColumn>;
                 })}

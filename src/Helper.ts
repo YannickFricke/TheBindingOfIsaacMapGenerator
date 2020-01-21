@@ -1,4 +1,4 @@
-import { IColumnContent } from "./IColumnContent";
+import { IColumnContent } from './IColumnContent';
 
 export const extractId = (url: string): string => {
     const urlParts = url.split('/');
@@ -63,392 +63,6 @@ export const canSetType = (
 
     return true;
 };
-export const updateGrid = (
-    shape: string,
-    rowIndex: number,
-    columnIndex: number,
-    grid: IColumnContent[][],
-): IColumnContent[][] => {
-    const tempGrid = [
-        ...grid,
-    ];
-
-    switch (shape) {
-        case '1':
-        case '2':
-        case '3':
-            removeFromGrid(
-                rowIndex,
-                columnIndex,
-                tempGrid,
-            );
-            tempGrid[rowIndex][columnIndex].shape = shape;
-            break;
-        case '4':
-        case '5':
-            removeFromGrid(
-                rowIndex,
-                columnIndex,
-                tempGrid,
-            );
-            removeFromGrid(
-                rowIndex + 1,
-                columnIndex,
-                tempGrid,
-            );
-            tempGrid[rowIndex][columnIndex].shape = `${shape}_0`;
-            tempGrid[rowIndex + 1][columnIndex].shape = `${shape}_1`;
-            break;
-        case '6':
-        case '7':
-            removeFromGrid(
-                rowIndex,
-                columnIndex,
-                tempGrid,
-            );
-            removeFromGrid(
-                rowIndex,
-                columnIndex + 1,
-                tempGrid,
-            );
-            tempGrid[rowIndex][columnIndex].shape = `${shape}_0`;
-            tempGrid[rowIndex][columnIndex + 1].shape = `${shape}_1`;
-            break;
-        case '8':
-            removeFromGrid(
-                rowIndex,
-                columnIndex,
-                tempGrid,
-            );
-            removeFromGrid(
-                rowIndex,
-                columnIndex + 1,
-                tempGrid,
-            );
-            removeFromGrid(
-                rowIndex + 1,
-                columnIndex,
-                tempGrid,
-            );
-            removeFromGrid(
-                rowIndex + 1,
-                columnIndex + 1,
-                tempGrid,
-            );
-            tempGrid[rowIndex][columnIndex].shape = `${shape}_0`;
-            tempGrid[rowIndex][columnIndex + 1].shape = `${shape}_1`;
-            tempGrid[rowIndex + 1][columnIndex].shape = `${shape}_2`;
-            tempGrid[rowIndex + 1][columnIndex + 1].shape = `${shape}_3`;
-            break;
-        case '9':
-            removeFromGrid(
-                rowIndex,
-                columnIndex + 1,
-                tempGrid,
-            );
-            removeFromGrid(
-                rowIndex + 1,
-                columnIndex,
-                tempGrid,
-            );
-            removeFromGrid(
-                rowIndex + 1,
-                columnIndex + 1,
-                tempGrid,
-            );
-            tempGrid[rowIndex][columnIndex + 1].shape = `${shape}_0`;
-            tempGrid[rowIndex + 1][columnIndex].shape = `${shape}_1`;
-            tempGrid[rowIndex + 1][columnIndex + 1].shape = `${shape}_2`;
-            break;
-        case '10':
-            removeFromGrid(
-                rowIndex,
-                columnIndex,
-                tempGrid,
-            );
-            removeFromGrid(
-                rowIndex + 1,
-                columnIndex,
-                tempGrid,
-            );
-            removeFromGrid(
-                rowIndex + 1,
-                columnIndex + 1,
-                tempGrid,
-            );
-            tempGrid[rowIndex][columnIndex].shape = `${shape}_0`;
-            tempGrid[rowIndex + 1][columnIndex].shape = `${shape}_1`;
-            tempGrid[rowIndex + 1][columnIndex + 1].shape = `${shape}_2`;
-            break;
-        case '11':
-            removeFromGrid(
-                rowIndex,
-                columnIndex,
-                tempGrid,
-            );
-            removeFromGrid(
-                rowIndex,
-                columnIndex + 1,
-                tempGrid,
-            );
-            removeFromGrid(
-                rowIndex + 1,
-                columnIndex + 1,
-                tempGrid,
-            );
-            tempGrid[rowIndex][columnIndex].shape = `${shape}_0`;
-            tempGrid[rowIndex][columnIndex + 1].shape = `${shape}_1`;
-            tempGrid[rowIndex + 1][columnIndex + 1].shape = `${shape}_2`;
-            break;
-        case '12':
-            removeFromGrid(
-                rowIndex,
-                columnIndex,
-                tempGrid,
-            );
-            removeFromGrid(
-                rowIndex,
-                columnIndex + 1,
-                tempGrid,
-            );
-            removeFromGrid(
-                rowIndex + 1,
-                columnIndex,
-                tempGrid,
-            );
-            tempGrid[rowIndex][columnIndex].shape = `${shape}_0`;
-            tempGrid[rowIndex][columnIndex + 1].shape = `${shape}_1`;
-            tempGrid[rowIndex + 1][columnIndex].shape = `${shape}_2`;
-            break;
-    }
-
-    return tempGrid;
-};
-
-export const cleanupGrid = (
-    shape: string,
-    rowIndex: number,
-    columnIndex: number,
-    grid: IColumnContent[][],
-): IColumnContent[][] => {
-    let tempGrid = [
-        ...grid,
-    ];
-
-    switch (shape) {
-        case '1':
-        case '2':
-        case '3':
-            tempGrid = removeFromGrid(
-                rowIndex,
-                columnIndex,
-                grid,
-            );
-            tempGrid[rowIndex][columnIndex] = {
-                shape: shape,
-                type: '',
-            };
-            break;
-        case '4':
-        case '5':
-            tempGrid = removeFromGrid(
-                rowIndex,
-                columnIndex,
-                grid,
-            );
-            tempGrid = removeFromGrid(
-                rowIndex + 1,
-                columnIndex,
-                grid,
-            );
-            tempGrid[rowIndex][columnIndex] = {
-                shape: `${shape}_0`,
-                type: '',
-            };
-            tempGrid[rowIndex + 1][columnIndex] = {
-                shape: `${shape}_1`,
-                type: '',
-            };
-            break;
-        case '6':
-        case '7':
-            tempGrid = removeFromGrid(
-                rowIndex,
-                columnIndex,
-                grid,
-            );
-            tempGrid = removeFromGrid(
-                rowIndex,
-                columnIndex + 1,
-                grid,
-            );
-            tempGrid[rowIndex][columnIndex] = {
-                shape: `${shape}_0`,
-                type: '',
-            };
-            tempGrid[rowIndex][columnIndex + 1] = {
-                shape: `${shape}_0`,
-                type: '',
-            };
-            break;
-        case '8':
-            tempGrid = removeFromGrid(
-                rowIndex,
-                columnIndex,
-                grid,
-            );
-            tempGrid = removeFromGrid(
-                rowIndex,
-                columnIndex + 1,
-                grid,
-            );
-            tempGrid = removeFromGrid(
-                rowIndex + 1,
-                columnIndex,
-                grid,
-            );
-            tempGrid = removeFromGrid(
-                rowIndex + 1,
-                columnIndex + 1,
-                grid,
-            );
-            tempGrid[rowIndex][columnIndex] = {
-                shape: `${shape}_0`,
-                type: '',
-            };
-            tempGrid[rowIndex][columnIndex + 1] = {
-                shape: `${shape}_1`,
-                type: '',
-            };
-            tempGrid[rowIndex + 1][columnIndex] = {
-                shape: `${shape}_2`,
-                type: '',
-            };
-            tempGrid[rowIndex + 1][columnIndex + 1] = {
-                shape: `${shape}_3`,
-                type: '',
-            };
-            break;
-        case '9':
-            tempGrid = removeFromGrid(
-                rowIndex,
-                columnIndex + 1,
-                grid,
-            );
-            tempGrid = removeFromGrid(
-                rowIndex + 1,
-                columnIndex,
-                grid,
-            );
-            tempGrid = removeFromGrid(
-                rowIndex + 1,
-                columnIndex + 1,
-                grid,
-            );
-            tempGrid[rowIndex][columnIndex + 1] = {
-                shape: `${shape}_0`,
-                type: '',
-            };
-            tempGrid[rowIndex + 1][columnIndex] = {
-                shape: `${shape}_1`,
-                type: '',
-            };
-            tempGrid[rowIndex + 1][columnIndex + 1] = {
-                shape: `${shape}_2`,
-                type: '',
-            };
-            break;
-        case '10':
-            tempGrid = removeFromGrid(
-                rowIndex,
-                columnIndex,
-                grid,
-            );
-            tempGrid = removeFromGrid(
-                rowIndex + 1,
-                columnIndex,
-                grid,
-            );
-            tempGrid = removeFromGrid(
-                rowIndex + 1,
-                columnIndex + 1,
-                grid,
-            );
-            tempGrid[rowIndex][columnIndex] = {
-                shape: `${shape}_0`,
-                type: '',
-            };
-            tempGrid[rowIndex + 1][columnIndex] = {
-                shape: `${shape}_1`,
-                type: '',
-            };
-            tempGrid[rowIndex + 1][columnIndex + 1] = {
-                shape: `${shape}_2`,
-                type: '',
-            };
-            break;
-        case '11':
-            tempGrid = removeFromGrid(
-                rowIndex,
-                columnIndex,
-                grid,
-            );
-            tempGrid = removeFromGrid(
-                rowIndex,
-                columnIndex + 1,
-                grid,
-            );
-            tempGrid = removeFromGrid(
-                rowIndex + 1,
-                columnIndex + 1,
-                grid,
-            );
-            tempGrid[rowIndex][columnIndex] = {
-                shape: `${shape}_0`,
-                type: '',
-            };
-            tempGrid[rowIndex][columnIndex + 1] = {
-                shape: `${shape}_1`,
-                type: '',
-            };
-            tempGrid[rowIndex + 1][columnIndex + 1] = {
-                shape: `${shape}_2`,
-                type: '',
-            };
-            break;
-        case '12':
-            tempGrid = removeFromGrid(
-                rowIndex,
-                columnIndex,
-                grid,
-            );
-            tempGrid = removeFromGrid(
-                rowIndex,
-                columnIndex + 1,
-                grid,
-            );
-            tempGrid = removeFromGrid(
-                rowIndex + 1,
-                columnIndex,
-                grid,
-            );
-            tempGrid[rowIndex][columnIndex] = {
-                shape: `${shape}_0`,
-                type: '',
-            };
-            tempGrid[rowIndex][columnIndex + 1] = {
-                shape: `${shape}_1`,
-                type: '',
-            };
-            tempGrid[rowIndex + 1][columnIndex] = {
-                shape: `${shape}_2`,
-                type: '',
-            };
-            break;
-    }
-
-    return tempGrid;
-};
 
 const removeFromGrid = (
     rowIndex: number,
@@ -471,6 +85,7 @@ const removeFromGrid = (
             };
             break;
         default:
+            // eslint-disable-next-line no-case-declarations
             const [
                       extractedShapeId,
                       spriteIndex,
@@ -788,6 +403,393 @@ const removeFromGrid = (
                     }
                     break;
             }
+            break;
+    }
+
+    return tempGrid;
+};
+
+export const cleanupGrid = (
+    shape: string,
+    rowIndex: number,
+    columnIndex: number,
+    grid: IColumnContent[][],
+): IColumnContent[][] => {
+    let tempGrid = [
+        ...grid,
+    ];
+
+    switch (shape) {
+        case '1':
+        case '2':
+        case '3':
+            tempGrid = removeFromGrid(
+                rowIndex,
+                columnIndex,
+                grid,
+            );
+            tempGrid[rowIndex][columnIndex] = {
+                shape: shape,
+                type: '',
+            };
+            break;
+        case '4':
+        case '5':
+            tempGrid = removeFromGrid(
+                rowIndex,
+                columnIndex,
+                grid,
+            );
+            tempGrid = removeFromGrid(
+                rowIndex + 1,
+                columnIndex,
+                grid,
+            );
+            tempGrid[rowIndex][columnIndex] = {
+                shape: `${shape}_0`,
+                type: '',
+            };
+            tempGrid[rowIndex + 1][columnIndex] = {
+                shape: `${shape}_1`,
+                type: '',
+            };
+            break;
+        case '6':
+        case '7':
+            tempGrid = removeFromGrid(
+                rowIndex,
+                columnIndex,
+                grid,
+            );
+            tempGrid = removeFromGrid(
+                rowIndex,
+                columnIndex + 1,
+                grid,
+            );
+            tempGrid[rowIndex][columnIndex] = {
+                shape: `${shape}_0`,
+                type: '',
+            };
+            tempGrid[rowIndex][columnIndex + 1] = {
+                shape: `${shape}_0`,
+                type: '',
+            };
+            break;
+        case '8':
+            tempGrid = removeFromGrid(
+                rowIndex,
+                columnIndex,
+                grid,
+            );
+            tempGrid = removeFromGrid(
+                rowIndex,
+                columnIndex + 1,
+                grid,
+            );
+            tempGrid = removeFromGrid(
+                rowIndex + 1,
+                columnIndex,
+                grid,
+            );
+            tempGrid = removeFromGrid(
+                rowIndex + 1,
+                columnIndex + 1,
+                grid,
+            );
+            tempGrid[rowIndex][columnIndex] = {
+                shape: `${shape}_0`,
+                type: '',
+            };
+            tempGrid[rowIndex][columnIndex + 1] = {
+                shape: `${shape}_1`,
+                type: '',
+            };
+            tempGrid[rowIndex + 1][columnIndex] = {
+                shape: `${shape}_2`,
+                type: '',
+            };
+            tempGrid[rowIndex + 1][columnIndex + 1] = {
+                shape: `${shape}_3`,
+                type: '',
+            };
+            break;
+        case '9':
+            tempGrid = removeFromGrid(
+                rowIndex,
+                columnIndex + 1,
+                grid,
+            );
+            tempGrid = removeFromGrid(
+                rowIndex + 1,
+                columnIndex,
+                grid,
+            );
+            tempGrid = removeFromGrid(
+                rowIndex + 1,
+                columnIndex + 1,
+                grid,
+            );
+            tempGrid[rowIndex][columnIndex + 1] = {
+                shape: `${shape}_0`,
+                type: '',
+            };
+            tempGrid[rowIndex + 1][columnIndex] = {
+                shape: `${shape}_1`,
+                type: '',
+            };
+            tempGrid[rowIndex + 1][columnIndex + 1] = {
+                shape: `${shape}_2`,
+                type: '',
+            };
+            break;
+        case '10':
+            tempGrid = removeFromGrid(
+                rowIndex,
+                columnIndex,
+                grid,
+            );
+            tempGrid = removeFromGrid(
+                rowIndex + 1,
+                columnIndex,
+                grid,
+            );
+            tempGrid = removeFromGrid(
+                rowIndex + 1,
+                columnIndex + 1,
+                grid,
+            );
+            tempGrid[rowIndex][columnIndex] = {
+                shape: `${shape}_0`,
+                type: '',
+            };
+            tempGrid[rowIndex + 1][columnIndex] = {
+                shape: `${shape}_1`,
+                type: '',
+            };
+            tempGrid[rowIndex + 1][columnIndex + 1] = {
+                shape: `${shape}_2`,
+                type: '',
+            };
+            break;
+        case '11':
+            tempGrid = removeFromGrid(
+                rowIndex,
+                columnIndex,
+                grid,
+            );
+            tempGrid = removeFromGrid(
+                rowIndex,
+                columnIndex + 1,
+                grid,
+            );
+            tempGrid = removeFromGrid(
+                rowIndex + 1,
+                columnIndex + 1,
+                grid,
+            );
+            tempGrid[rowIndex][columnIndex] = {
+                shape: `${shape}_0`,
+                type: '',
+            };
+            tempGrid[rowIndex][columnIndex + 1] = {
+                shape: `${shape}_1`,
+                type: '',
+            };
+            tempGrid[rowIndex + 1][columnIndex + 1] = {
+                shape: `${shape}_2`,
+                type: '',
+            };
+            break;
+        case '12':
+            tempGrid = removeFromGrid(
+                rowIndex,
+                columnIndex,
+                grid,
+            );
+            tempGrid = removeFromGrid(
+                rowIndex,
+                columnIndex + 1,
+                grid,
+            );
+            tempGrid = removeFromGrid(
+                rowIndex + 1,
+                columnIndex,
+                grid,
+            );
+            tempGrid[rowIndex][columnIndex] = {
+                shape: `${shape}_0`,
+                type: '',
+            };
+            tempGrid[rowIndex][columnIndex + 1] = {
+                shape: `${shape}_1`,
+                type: '',
+            };
+            tempGrid[rowIndex + 1][columnIndex] = {
+                shape: `${shape}_2`,
+                type: '',
+            };
+            break;
+    }
+
+    return tempGrid;
+};
+
+export const updateGrid = (
+    shape: string,
+    rowIndex: number,
+    columnIndex: number,
+    grid: IColumnContent[][],
+): IColumnContent[][] => {
+    const tempGrid = [
+        ...grid,
+    ];
+
+    switch (shape) {
+        case '1':
+        case '2':
+        case '3':
+            removeFromGrid(
+                rowIndex,
+                columnIndex,
+                tempGrid,
+            );
+            tempGrid[rowIndex][columnIndex].shape = shape;
+            break;
+        case '4':
+        case '5':
+            removeFromGrid(
+                rowIndex,
+                columnIndex,
+                tempGrid,
+            );
+            removeFromGrid(
+                rowIndex + 1,
+                columnIndex,
+                tempGrid,
+            );
+            tempGrid[rowIndex][columnIndex].shape = `${shape}_0`;
+            tempGrid[rowIndex + 1][columnIndex].shape = `${shape}_1`;
+            break;
+        case '6':
+        case '7':
+            removeFromGrid(
+                rowIndex,
+                columnIndex,
+                tempGrid,
+            );
+            removeFromGrid(
+                rowIndex,
+                columnIndex + 1,
+                tempGrid,
+            );
+            tempGrid[rowIndex][columnIndex].shape = `${shape}_0`;
+            tempGrid[rowIndex][columnIndex + 1].shape = `${shape}_1`;
+            break;
+        case '8':
+            removeFromGrid(
+                rowIndex,
+                columnIndex,
+                tempGrid,
+            );
+            removeFromGrid(
+                rowIndex,
+                columnIndex + 1,
+                tempGrid,
+            );
+            removeFromGrid(
+                rowIndex + 1,
+                columnIndex,
+                tempGrid,
+            );
+            removeFromGrid(
+                rowIndex + 1,
+                columnIndex + 1,
+                tempGrid,
+            );
+            tempGrid[rowIndex][columnIndex].shape = `${shape}_0`;
+            tempGrid[rowIndex][columnIndex + 1].shape = `${shape}_1`;
+            tempGrid[rowIndex + 1][columnIndex].shape = `${shape}_2`;
+            tempGrid[rowIndex + 1][columnIndex + 1].shape = `${shape}_3`;
+            break;
+        case '9':
+            removeFromGrid(
+                rowIndex,
+                columnIndex + 1,
+                tempGrid,
+            );
+            removeFromGrid(
+                rowIndex + 1,
+                columnIndex,
+                tempGrid,
+            );
+            removeFromGrid(
+                rowIndex + 1,
+                columnIndex + 1,
+                tempGrid,
+            );
+            tempGrid[rowIndex][columnIndex + 1].shape = `${shape}_0`;
+            tempGrid[rowIndex + 1][columnIndex].shape = `${shape}_1`;
+            tempGrid[rowIndex + 1][columnIndex + 1].shape = `${shape}_2`;
+            break;
+        case '10':
+            removeFromGrid(
+                rowIndex,
+                columnIndex,
+                tempGrid,
+            );
+            removeFromGrid(
+                rowIndex + 1,
+                columnIndex,
+                tempGrid,
+            );
+            removeFromGrid(
+                rowIndex + 1,
+                columnIndex + 1,
+                tempGrid,
+            );
+            tempGrid[rowIndex][columnIndex].shape = `${shape}_0`;
+            tempGrid[rowIndex + 1][columnIndex].shape = `${shape}_1`;
+            tempGrid[rowIndex + 1][columnIndex + 1].shape = `${shape}_2`;
+            break;
+        case '11':
+            removeFromGrid(
+                rowIndex,
+                columnIndex,
+                tempGrid,
+            );
+            removeFromGrid(
+                rowIndex,
+                columnIndex + 1,
+                tempGrid,
+            );
+            removeFromGrid(
+                rowIndex + 1,
+                columnIndex + 1,
+                tempGrid,
+            );
+            tempGrid[rowIndex][columnIndex].shape = `${shape}_0`;
+            tempGrid[rowIndex][columnIndex + 1].shape = `${shape}_1`;
+            tempGrid[rowIndex + 1][columnIndex + 1].shape = `${shape}_2`;
+            break;
+        case '12':
+            removeFromGrid(
+                rowIndex,
+                columnIndex,
+                tempGrid,
+            );
+            removeFromGrid(
+                rowIndex,
+                columnIndex + 1,
+                tempGrid,
+            );
+            removeFromGrid(
+                rowIndex + 1,
+                columnIndex,
+                tempGrid,
+            );
+            tempGrid[rowIndex][columnIndex].shape = `${shape}_0`;
+            tempGrid[rowIndex][columnIndex + 1].shape = `${shape}_1`;
+            tempGrid[rowIndex + 1][columnIndex].shape = `${shape}_2`;
             break;
     }
 

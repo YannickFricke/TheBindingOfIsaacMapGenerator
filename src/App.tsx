@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Grid } from './components/Grid';
 import { Header } from './components/Header';
 import { LeftSidebar } from './components/LeftSidebar';
 import { RightSidebar } from './components/RightSidebar';
-import { IColumnContent } from "./IColumnContent";
+import { IColumnContent } from './IColumnContent';
 
 const StyledApplication = styled.div`
         display: grid;
