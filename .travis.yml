@@ -1,0 +1,12 @@
+# Set the language to node js
+language: node_js
+
+# Use version node.js 12
+node_js:
+    - 12
+
+# Run the linting script
+script: yarn run lint
+
+# Use the caching from travis ci
+cache: yarn
