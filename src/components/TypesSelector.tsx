@@ -21,22 +21,55 @@ export const TypesSelector: React.FC<ITypesSelectorProps> = (props) => {
 
     return <div id="room-types">
         <ImageContainer>
-            <div><img onClick={handleClick} src={Images.types.SHOP}/></div>
-            <div><img onClick={handleClick} src={Images.types.TREASURE}/></div>
-            <div><img onClick={handleClick} src={Images.types.BOSS}/></div>
-            <div><img onClick={handleClick} src={Images.types.MINIBOSS}/></div>
-            <div><img onClick={handleClick} src={Images.types.SECRET}/></div>
-            <div><img onClick={handleClick} src={Images.types.SUPERSECRET}/></div>
-            <div><img onClick={handleClick} src={Images.types.ARCADE}/></div>
-            <div><img onClick={handleClick} src={Images.types.CURSE}/></div>
-            <div><img onClick={handleClick} src={Images.types.CHALLENGE}/></div>
-            <div><img onClick={handleClick} src={Images.types.LIBRARY}/></div>
-            <div><img onClick={handleClick} src={Images.types.SACRIFICE}/></div>
-            <div><img onClick={handleClick} src={Images.types.BOSSRUSH}/></div>
-            <div><img onClick={handleClick} src={Images.types.ISAACS}/></div>
-            <div><img onClick={handleClick} src={Images.types.BARREN}/></div>
-            <div><img onClick={handleClick} src={Images.types.CHEST}/></div>
-            <div><img onClick={handleClick} src={Images.types.DICE}/></div>
+            <div>
+                <img onClick={handleClick} alt={'Shop logo'} src={Images.types.SHOP} data-tip={'Shop'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Treasure logo'} src={Images.types.TREASURE} data-tip={'Treasure'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Boss logo'} src={Images.types.BOSS} data-tip={'Boss'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Miniboss logo'} src={Images.types.MINIBOSS} data-tip={'Miniboss'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Secret logo'} src={Images.types.SECRET} data-tip={'Secret'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Supersecret logo'} src={Images.types.SUPERSECRET}
+                     data-tip={'Supersecret'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Arcade logo'} src={Images.types.ARCADE} data-tip={'Arcade'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Curse logo'} src={Images.types.CURSE} data-tip={'Curse'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Challenge logo'} src={Images.types.CHALLENGE} data-tip={'Challenge'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Library logo'} src={Images.types.LIBRARY} data-tip={'Library'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Sacrifice logo'} src={Images.types.SACRIFICE} data-tip={'Sacrifice'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Bossrush logo'} src={Images.types.BOSSRUSH} data-tip={'Bossrush'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Isaacs logo'} src={Images.types.ISAACS} data-tip={'Isaacs'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Barren logo'} src={Images.types.BARREN} data-tip={'Barren'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Chest logo'} src={Images.types.CHEST} data-tip={'Chest'}/>
+            </div>
+            <div>
+                <img onClick={handleClick} alt={'Dice logo'} src={Images.types.DICE} data-tip={'Dice'}/>
+            </div>
         </ImageContainer>
     </div>
 };

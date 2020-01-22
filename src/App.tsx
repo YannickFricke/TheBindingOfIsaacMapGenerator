@@ -5,6 +5,7 @@ import { Header } from './components/Header';
 import { LeftSidebar } from './components/LeftSidebar';
 import { RightSidebar } from './components/RightSidebar';
 import { IColumnContent } from './IColumnContent';
+import ReactTooltip from 'react-tooltip';
 
 const StyledApplication = styled.div`
         display: grid;
@@ -55,6 +56,7 @@ export const App: React.FC = () => {
         <LeftSidebar setSelection={setSelection}/>
         <GridContainer>
             <Grid grid={grid} setGrid={setGrid} selection={selection}/>
+            <ReactTooltip/>
         </GridContainer>
         <RightSidebar rows={rows} setRows={setRows} columns={columns} setColumns={setColumns}/>
     </StyledApplication>;
