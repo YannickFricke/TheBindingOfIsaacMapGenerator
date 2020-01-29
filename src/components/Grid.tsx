@@ -48,73 +48,73 @@ interface IGridProps {
 }
 
 export const Grid: React.FC<IGridProps> = props => {
-  const handleColumnClick = (event: React.MouseEvent<HTMLDivElement>): void => {
-    if (props.selection.type === '') {
-      return;
-    }
-
-    let tempGrid: IColumnContent[][] = [...props.grid];
-    const selectedId = props.selection.id;
-    const target = event.target as HTMLDivElement;
-    const rowIndex = parseInt(target.dataset['row'] || '', 10);
-    const columnIndex = parseInt(target.dataset['column'] || '', 10);
-
-    if (isNaN(rowIndex) || isNaN(columnIndex)) {
-      return;
-    }
-
-    switch (props.selection.type) {
-      case 'shape':
-        if (!canSetShape(selectedId, rowIndex, columnIndex, tempGrid)) {
-          return;
+    const handleColumnClick = (event: React.MouseEvent<HTMLDivElement>): void => {
+        if (props.selection.type === '') {
+            return;
         }
 
-        tempGrid = updateGrid(selectedId, rowIndex, columnIndex, tempGrid);
+        let tempGrid: IColumnContent[][] = [...props.grid];
+        const selectedId = props.selection.id;
+        const target = event.target as HTMLDivElement;
+        const rowIndex = parseInt(target.dataset['row'] || '', 10);
+        const columnIndex = parseInt(target.dataset['column'] || '', 10);
 
-        break;
-
-      case 'type':
-        if (!canSetType(rowIndex, columnIndex, tempGrid)) {
-          return;
+        if (isNaN(rowIndex) || isNaN(columnIndex)) {
+            return;
         }
 
-        tempGrid[rowIndex][columnIndex].type = selectedId;
-        break;
-    }
+        switch (props.selection.type) {
+        case 'shape':
+            if (!canSetShape(selectedId, rowIndex, columnIndex, tempGrid)) {
+                return;
+            }
 
-    props.setGrid(tempGrid);
-  };
+            tempGrid = updateGrid(selectedId, rowIndex, columnIndex, tempGrid);
 
-  return (
-    <StyledGrid columns={props.columns}>
-      {props.grid.map((row: IColumnContent[], rowIndex: number) => {
-        return (
-          <GridRow key={rowIndex}>
-            {row.map((column: IColumnContent, columnIndex: number) => {
-              return (
-                <GridColumn
-                  key={columnIndex}
-                  onClick={handleColumnClick}
-                  data-row={rowIndex}
-                  data-column={columnIndex}
-                  style={{
-                    backgroundImage:
+            break;
+
+        case 'type':
+            if (!canSetType(rowIndex, columnIndex, tempGrid)) {
+                return;
+            }
+
+            tempGrid[rowIndex][columnIndex].type = selectedId;
+            break;
+        }
+
+        props.setGrid(tempGrid);
+    };
+
+    return (
+        <StyledGrid columns={props.columns}>
+            {props.grid.map((row: IColumnContent[], rowIndex: number) => {
+                return (
+                    <GridRow key={rowIndex}>
+                        {row.map((column: IColumnContent, columnIndex: number) => {
+                            return (
+                                <GridColumn
+                                    key={columnIndex}
+                                    onClick={handleColumnClick}
+                                    data-row={rowIndex}
+                                    data-column={columnIndex}
+                                    style={{
+                                        backgroundImage:
                       column.shape !== ''
-                        ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                          ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           `url("${(Images.shapeSprites as any)[column.shape]}")`
-                        : ''
-                  }}
-                >
-                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                  {column.type !== '' && (
-                    <RoomTypeImage src={(Images.types as any)[column.type]} />
-                  )}
-                </GridColumn>
-              );
+                          : ''
+                                    }}
+                                >
+                                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                    {column.type !== '' && (
+                                        <RoomTypeImage src={(Images.types as any)[column.type]} />
+                                    )}
+                                </GridColumn>
+                            );
+                        })}
+                    </GridRow>
+                );
             })}
-          </GridRow>
-        );
-      })}
-    </StyledGrid>
-  );
+        </StyledGrid>
+    );
 };

@@ -28,52 +28,52 @@ export interface ISelectionType {
 }
 
 export const App: React.FC = () => {
-  const [rows, setRows] = useState(10);
-  const [columns, setColumns] = useState(10);
-  const [grid, setGrid] = useState<IColumnContent[][]>([]);
-  const [selection, setSelection] = useState<ISelectionType>({
-    type: '',
-    id: ''
-  });
+    const [rows, setRows] = useState(10);
+    const [columns, setColumns] = useState(10);
+    const [grid, setGrid] = useState<IColumnContent[][]>([]);
+    const [selection, setSelection] = useState<ISelectionType>({
+        type: '',
+        id: ''
+    });
 
-  useEffect(() => {
-    const tempGrid: IColumnContent[][] = [];
+    useEffect(() => {
+        const tempGrid: IColumnContent[][] = [];
 
-    for (let row = 0; row < rows; row++) {
-      const tempRow = [];
+        for (let row = 0; row < rows; row++) {
+            const tempRow = [];
 
-      for (let column = 0; column < columns; column++) {
-        tempRow.push({
-          shape: '',
-          type: ''
-        });
-      }
+            for (let column = 0; column < columns; column++) {
+                tempRow.push({
+                    shape: '',
+                    type: ''
+                });
+            }
 
-      tempGrid.push(tempRow);
-    }
+            tempGrid.push(tempRow);
+        }
 
-    setGrid(tempGrid);
-  }, [rows, columns]);
+        setGrid(tempGrid);
+    }, [rows, columns]);
 
-  return (
-    <StyledApplication id="application">
-      <Header />
-      <LeftSidebar setSelection={setSelection} />
-      <GridContainer>
-        <Grid
-          columns={columns}
-          grid={grid}
-          setGrid={setGrid}
-          selection={selection}
-        />
-        <ReactTooltip />
-      </GridContainer>
-      <RightSidebar
-        rows={rows}
-        setRows={setRows}
-        columns={columns}
-        setColumns={setColumns}
-      />
-    </StyledApplication>
-  );
+    return (
+        <StyledApplication id="application">
+            <Header />
+            <LeftSidebar setSelection={setSelection} />
+            <GridContainer>
+                <Grid
+                    columns={columns}
+                    grid={grid}
+                    setGrid={setGrid}
+                    selection={selection}
+                />
+                <ReactTooltip />
+            </GridContainer>
+            <RightSidebar
+                rows={rows}
+                setRows={setRows}
+                columns={columns}
+                setColumns={setColumns}
+            />
+        </StyledApplication>
+    );
 };

@@ -42,54 +42,54 @@ interface IRightSidebarProps {
 }
 
 export const RightSidebar: React.FC<IRightSidebarProps> = props => {
-  const handleRowChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    const newValue = parseInt(event.target.value, 10);
+    const handleRowChange = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ): void => {
+        const newValue = parseInt(event.target.value, 10);
 
-    if (isNaN(newValue)) {
-      return;
-    }
+        if (isNaN(newValue)) {
+            return;
+        }
 
-    props.setRows(newValue);
-  };
+        props.setRows(newValue);
+    };
 
-  const handleColumnChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    const newValue = parseInt(event.target.value, 10);
+    const handleColumnChange = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ): void => {
+        const newValue = parseInt(event.target.value, 10);
 
-    if (isNaN(newValue)) {
-      return;
-    }
+        if (isNaN(newValue)) {
+            return;
+        }
 
-    props.setColumns(newValue);
-  };
+        props.setColumns(newValue);
+    };
 
-  return (
-    <StyledRightSidebar>
-      <SidebarHeading>Map size</SidebarHeading>
+    return (
+        <StyledRightSidebar>
+            <SidebarHeading>Map size</SidebarHeading>
 
-      <div>
-        <InputDescription>Rows:</InputDescription>
-        <StyledInput
-          type="text"
-          defaultValue={props.rows}
-          onChange={handleRowChange}
-        />
-      </div>
-      <div>
-        <InputDescription>Columns:</InputDescription>
-        <StyledInput
-          type="text"
-          defaultValue={props.columns}
-          onChange={handleColumnChange}
-        />
-      </div>
+            <div>
+                <InputDescription>Rows:</InputDescription>
+                <StyledInput
+                    type="text"
+                    defaultValue={props.rows}
+                    onChange={handleRowChange}
+                />
+            </div>
+            <div>
+                <InputDescription>Columns:</InputDescription>
+                <StyledInput
+                    type="text"
+                    defaultValue={props.columns}
+                    onChange={handleColumnChange}
+                />
+            </div>
 
-      <Notice>
+            <Notice>
         Changing one of these values will delete your current data
-      </Notice>
-    </StyledRightSidebar>
-  );
+            </Notice>
+        </StyledRightSidebar>
+    );
 };
