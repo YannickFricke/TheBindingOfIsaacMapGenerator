@@ -8,19 +8,23 @@ import { IColumnContent } from './IColumnContent';
 import ReactTooltip from 'react-tooltip';
 
 const StyledApplication = styled.div`
-        display: grid;
-        grid-template-areas: 'header header header header header header'
-                            'left main main main main right';
+  display: grid;
+  grid-template-columns: 300px auto 300px;
+  grid-template-areas:
+    "header header header"
+    "left main right";
 `;
 
 const GridContainer = styled.div`
-    grid-area: main;
-    display: grid;
+  grid-area: main;
+  display: grid;
+  overflow: scroll;
+  height: calc(100vh - 38px);
 `;
 
 export interface ISelectionType {
-    type: 'shape' | 'type' | '';
-    id: string;
+  type: 'shape' | 'type' | '';
+  id: string;
 }
 
 export const App: React.FC = () => {
@@ -29,7 +33,7 @@ export const App: React.FC = () => {
     const [grid, setGrid] = useState<IColumnContent[][]>([]);
     const [selection, setSelection] = useState<ISelectionType>({
         type: '',
-        id: '',
+        id: ''
     });
 
     useEffect(() => {
@@ -41,7 +45,7 @@ export const App: React.FC = () => {
             for (let column = 0; column < columns; column++) {
                 tempRow.push({
                     shape: '',
-                    type: '',
+                    type: ''
                 });
             }
 
@@ -51,13 +55,25 @@ export const App: React.FC = () => {
         setGrid(tempGrid);
     }, [rows, columns]);
 
-    return <StyledApplication id="application">
-        <Header/>
-        <LeftSidebar setSelection={setSelection}/>
-        <GridContainer>
-            <Grid grid={grid} setGrid={setGrid} selection={selection}/>
-            <ReactTooltip/>
-        </GridContainer>
-        <RightSidebar rows={rows} setRows={setRows} columns={columns} setColumns={setColumns}/>
-    </StyledApplication>;
+    return (
+        <StyledApplication id="application">
+            <Header />
+            <LeftSidebar setSelection={setSelection} />
+            <GridContainer>
+                <Grid
+                    columns={columns}
+                    grid={grid}
+                    setGrid={setGrid}
+                    selection={selection}
+                />
+                <ReactTooltip />
+            </GridContainer>
+            <RightSidebar
+                rows={rows}
+                setRows={setRows}
+                columns={columns}
+                setColumns={setColumns}
+            />
+        </StyledApplication>
+    );
 };

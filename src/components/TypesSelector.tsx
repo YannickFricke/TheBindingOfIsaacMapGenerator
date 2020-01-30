@@ -38,7 +38,7 @@ export const TypesSelector: React.FC<ITypesSelectorProps> = (props) => {
             </div>
             <div>
                 <img onClick={handleClick} alt={'Supersecret logo'} src={Images.types.SUPERSECRET}
-                     data-tip={'Supersecret'}/>
+                    data-tip={'Supersecret'}/>
             </div>
             <div>
                 <img onClick={handleClick} alt={'Arcade logo'} src={Images.types.ARCADE} data-tip={'Arcade'}/>
