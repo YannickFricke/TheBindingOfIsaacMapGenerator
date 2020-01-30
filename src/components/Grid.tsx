@@ -1,43 +1,50 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ISelectionType } from '../App';
-import { IColumnContent } from '../IColumnContent';
 import { canSetShape, canSetType, updateGrid } from '../Helper';
+import { IColumnContent } from '../IColumnContent';
 import { Images } from '../Images';
 
-const StyledGrid = styled.div`
-  border: 1px solid #b0b0b0;
-  align-self: center;
-  justify-self: center;
-  width: calc(${props => props.columns} * 37px);
+interface IStyledGridProps {
+    columns: number;
+}
+
+const StyledGrid: React.FC<IStyledGridProps> = styled.div`
+    border: 1px solid #b0b0b0;
+    align-self: center;
+    justify-self: center;
+    margin-top: 5px;
+    ${(props: IGridProps): FlattenSimpleInterpolation => css`
+        width: calc(${props.columns} * 37px);
+    `}
 `;
 
 const GridRow = styled.div`
-  height: 32px;
-  border-top: 1px solid #b0b0b0;
+    height: 32px;
+    border-top: 1px solid #b0b0b0;
 
-  &:nth-child(1) {
-    border: none;
-  }
+    &:nth-child(1) {
+        border: none;
+    }
 `;
 
-const GridColumn = styled.div`
-  width: 36px;
-  height: 32px;
-  float: left;
-  border-left: 1px solid #b0b0b0;
+const GridColumn: React.FC<React.HTMLProps<HTMLDivElement>> = styled.div`
+    width: 36px;
+    height: 32px;
+    float: left;
+    border-left: 1px solid #b0b0b0;
 
-  &:nth-child(1) {
-    border: none;
-  }
+    &:nth-child(1) {
+        border: none;
+    }
 `;
 
 const RoomTypeImage = styled.img`
-  width: 60%;
-  height: 60%;
-  margin-top: 7px;
-  margin-left: 7px;
-  pointer-events: none;
+    width: 60%;
+    height: 60%;
+    margin-top: 7px;
+    margin-left: 7px;
+    pointer-events: none;
 `;
 
 interface IGridProps {
@@ -98,15 +105,14 @@ export const Grid: React.FC<IGridProps> = props => {
                                     data-row={rowIndex}
                                     data-column={columnIndex}
                                     style={{
-                                        backgroundImage:
-                                            column.shape !== ''
-                                                ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                                `url("${(Images.shapeSprites as any)[column.shape]}")`
-                                                : ''
+                                        backgroundImage: column.shape !== ''
+                                            ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                            `url("${(Images.shapeSprites as any)[column.shape]}")`
+                                            : ''
                                     }}
                                 >
-                                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                                     {column.type !== '' && (
+                                        /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
                                         <RoomTypeImage src={(Images.types as any)[column.type]} />
                                     )}
                                 </GridColumn>
