@@ -13,6 +13,7 @@ const StyledGrid: React.FC<IStyledGridProps> = styled.div`
     border: 1px solid #b0b0b0;
     align-self: center;
     justify-self: center;
+    margin-top: 5px;
     ${(props: IGridProps): FlattenSimpleInterpolation => css`
         width: calc(${props.columns} * 37px);
     `}
