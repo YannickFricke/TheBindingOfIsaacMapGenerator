@@ -41,10 +41,10 @@ const RoomTypeImage = styled.img`
 `;
 
 interface IGridProps {
-  grid: IColumnContent[][];
-  columns: number;
-  setGrid: React.Dispatch<React.SetStateAction<IColumnContent[][]>>;
-  selection: ISelectionType;
+    grid: IColumnContent[][];
+    columns: number;
+    setGrid: React.Dispatch<React.SetStateAction<IColumnContent[][]>>;
+    selection: ISelectionType;
 }
 
 export const Grid: React.FC<IGridProps> = props => {
@@ -99,10 +99,10 @@ export const Grid: React.FC<IGridProps> = props => {
                                     data-column={columnIndex}
                                     style={{
                                         backgroundImage:
-                      column.shape !== ''
-                          ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          `url("${(Images.shapeSprites as any)[column.shape]}")`
-                          : ''
+                                            column.shape !== ''
+                                                ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                                `url("${(Images.shapeSprites as any)[column.shape]}")`
+                                                : ''
                                     }}
                                 >
                                     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}

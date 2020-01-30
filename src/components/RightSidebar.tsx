@@ -34,11 +34,11 @@ const Notice = styled.div`
 `;
 
 interface IRightSidebarProps {
-  rows: number;
-  setRows: React.Dispatch<React.SetStateAction<number>>;
+    rows: number;
+    setRows: React.Dispatch<React.SetStateAction<number>>;
 
-  columns: number;
-  setColumns: React.Dispatch<React.SetStateAction<number>>;
+    columns: number;
+    setColumns: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const RightSidebar: React.FC<IRightSidebarProps> = props => {
@@ -88,7 +88,7 @@ export const RightSidebar: React.FC<IRightSidebarProps> = props => {
             </div>
 
             <Notice>
-        Changing one of these values will delete your current data
+                Changing one of these values will delete your current data
             </Notice>
         </StyledRightSidebar>
     );

@@ -24,12 +24,12 @@ export const LeftSidebar: React.FC<ILeftSidebarProps> = (props) => {
             <SidebarHeading>
                 Room shapes
             </SidebarHeading>
-            <ShapesSelector setSelection={props.setSelection}/>
+            <ShapesSelector setSelection={props.setSelection} />
         </RoomShapesContainer>
 
         <SidebarHeading>
             Room types
         </SidebarHeading>
-        <TypesSelector setSelection={props.setSelection}/>
+        <TypesSelector setSelection={props.setSelection} />
     </StyledLeftSidebar>
 };
